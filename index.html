@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang=nl>
+<head>
+<meta charset=UTF-8 />
+<title>Dashboard | SpaceX</title>
+<meta name=viewport content="width=device-width, initial-scale=1">
+<link rel=icon href=images/icon.png>
+<link type=text/css href=styles/main.css rel=stylesheet />
+<link type=text/css href=styles/grid-layout.css rel=stylesheet />
+<link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css>
+<script type=text/javascript src=https://www.gstatic.com/charts/loader.js></script>
+</head>
+<body>
+<section class="grid-item cards head">
+<img src=images/spacexlogo.png alt="SpaceX Logo" id=logo>
+</section>
+<section class="grid-item cards card1">
+<h1>Speed</h1>
+<div class=chart_size id=chart_div1></div>
+<script>google.charts.load("current",{packages:["gauge"]});google.charts.setOnLoadCallback(drawChart);function drawChart(){var c=google.visualization.arrayToDataTable([["Label","Value"],["Speed",34],]);var a={width:120,height:120,minorTicks:5};var b=new google.visualization.Gauge(document.getElementById("chart_div1"));b.draw(c,a);setInterval(function(){c.setValue(0,1,40+Math.round(60*Math.random()));b.draw(c,a)},13000);setInterval(function(){c.setValue(1,1,40+Math.round(60*Math.random()));b.draw(c,a)},5000);setInterval(function(){c.setValue(2,1,60+Math.round(20*Math.random()));b.draw(c,a)},26000)}</script>
+</section>
+<section class="grid-item card2">
+<h1>Fuel</h1>
+<div class=chart_size id=chart_div2></div>
+<script>google.charts.load("current",{packages:["gauge"]});google.charts.setOnLoadCallback(drawChart);function drawChart(){var c=google.visualization.arrayToDataTable([["Label","Value"],["Fuel",80],]);var a={width:120,height:120,redFrom:0,redTo:10,yellowFrom:10,yellowTo:25,minorTicks:5};var b=new google.visualization.Gauge(document.getElementById("chart_div2"));b.draw(c,a);setInterval(function(){c.setValue(0,1,40+Math.round(60*Math.random()));b.draw(c,a)},13000);setInterval(function(){c.setValue(1,1,40+Math.round(60*Math.random()));b.draw(c,a)},5000);setInterval(function(){c.setValue(2,1,60+Math.round(20*Math.random()));b.draw(c,a)},26000)}</script>
+</section>
+<section class="grid-item card3">
+<h1>G-Force</h1>
+<div class=chart_size id=chart_div3></div>
+<script>google.charts.load("current",{packages:["gauge"]});google.charts.setOnLoadCallback(drawChart);function drawChart(){var c=google.visualization.arrayToDataTable([["Label","Value"],["G-Force",67],]);var a={width:120,height:120,minorTicks:5};var b=new google.visualization.Gauge(document.getElementById("chart_div3"));b.draw(c,a);setInterval(function(){c.setValue(0,1,40+Math.round(60*Math.random()));b.draw(c,a)},13000);setInterval(function(){c.setValue(1,1,40+Math.round(60*Math.random()));b.draw(c,a)},5000);setInterval(function(){c.setValue(2,1,60+Math.round(20*Math.random()));b.draw(c,a)},26000)}</script>
+</section>
+<main class="grid-item main">
+<h1>Time to arrival</h1>
+<div id=clockdiv>
+<div>
+<span class=days></span>
+<div class=smalltext>Days</div>
+</div>
+<div>
+<span class=hours></span>
+<div class=smalltext>Hours</div>
+</div>
+<div>
+<span class=minutes></span>
+<div class=smalltext>Minutes</div>
+</div>
+<div>
+<span class=seconds></span>
+<div class=smalltext>Seconds</div>
+</div>
+</div>
+<script>function getTimeRemaining(d){var c=Date.parse(d)-Date.parse(new Date());var e=Math.floor((c/1000)%60);var b=Math.floor((c/1000/60)%60);var a=Math.floor((c/(1000*60*60))%24);var f=Math.floor(c/(1000*60*60*24));return{total:c,days:f,hours:a,minutes:b,seconds:e}}function initializeClock(a,d){var e=document.getElementById(a);var h=e.querySelector(".days");var f=e.querySelector(".hours");var c=e.querySelector(".minutes");var i=e.querySelector(".seconds");function b(){var j=getTimeRemaining(d);h.innerHTML=j.days;f.innerHTML=("0"+j.hours).slice(-2);c.innerHTML=("0"+j.minutes).slice(-2);i.innerHTML=("0"+j.seconds).slice(-2);if(j.total<=0){clearInterval(g)}}b();var g=setInterval(b,1000)}var deadline=new Date(Date.parse(new Date())+50*22*27*35*1000);initializeClock("clockdiv",deadline);</script>
+</main>
+<aside class="grid-item main2">
+<h1>Stock of food</h1>
+<div class=chart_size2 id=piechart></div>
+<script>google.charts.load("current",{packages:["corechart"]});google.charts.setOnLoadCallback(drawChart);function drawChart(){var c=google.visualization.arrayToDataTable([["Wat","Hoeveelheid"],["Bread",11],["Water",64],["Apples",57],["Wine",4],["Beer",29]]);var a={title:""};var b=new google.visualization.PieChart(document.getElementById("piechart"));b.draw(c,a)};</script>
+</aside>
+<script type=text/javascript src=scripts/main.js></script>
+</body>
+</html>
